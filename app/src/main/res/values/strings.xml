@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Remote Desktop</string>
+
+    <!-- Sign in -->
+    <string name="sign_in_google">Sign in with Google</string>
+
+    <string name="google_client_id">13325893309-uoihd848e8dtb17h3fl5bkp1bpol3avr.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
