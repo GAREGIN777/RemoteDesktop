@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "13325893309-tjhnkosbu9e943d0eceucv5508ark979.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.remotedesktop",
+            "certificate_hash": "8466152a69e07006d402f8ef26448850ccee2e4a"
+          }
+        },
+        {
           "client_id": "13325893309-uoihd848e8dtb17h3fl5bkp1bpol3avr.apps.googleusercontent.com",
           "client_type": 3
         }

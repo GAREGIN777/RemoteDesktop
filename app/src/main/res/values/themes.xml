@@ -5,5 +5,25 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="CustomBtn" parent="Widget.Material3.Button">
+        <item name="android:fontFamily">@font/inter_extrabold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="iconTint">@null</item>
+        <item name="iconGravity">start</item>
+        <item name="iconPadding">10dp</item>
+    </style>
+
+    <style name="CustomEdittext" parent="Widget.AppCompat.EditText">
+        <item name="android:fontFamily">@font/inter_black</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:minHeight">45dp</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/custom_edittext_bg</item>
+        <item name="android:maxWidth">400dp</item>
+
+    </style>
+
     <style name="Theme.RemoteDesktop" parent="Base.Theme.RemoteDesktop" />
 </resources>

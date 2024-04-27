@@ -2,11 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="edittext_border">#CCCCCC</color>
 
-    <color name="btn_color">#3F51B5</color>
 
 
-    <color name="gradient_start">#FF4081</color>
-    <color name="gradient_end">#3F51B5</color>
+    <color name="accent_blue">#213BCC</color>
+    <color name="accent_purple">#5D0AF1</color>
+
+
+
+    <color name="gradient_start">#9C27B0</color>
+    <color name="gradient_end">#00BCD4</color>
 
 </resources>
