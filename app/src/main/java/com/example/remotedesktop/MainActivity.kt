@@ -17,11 +17,16 @@ class MainActivity : AppCompatActivity(){
         FirebaseApp.initializeApp(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val auth = FirebaseAuth.getInstance()
 
 
 
 
-        val defaultFragment : Fragment = RegisterFragment();
+
+        var defaultFragment : Fragment = RegisterFragment();
+        if(auth.currentUser != null){
+            defaultFragment = HomeFragment();
+        }
         supportFragmentManager.beginTransaction()
             .replace(binding.mainFragmentContainer.id,defaultFragment)
             .commit()
