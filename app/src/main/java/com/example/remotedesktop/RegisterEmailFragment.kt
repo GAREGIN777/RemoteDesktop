@@ -67,8 +67,8 @@ class RegisterEmailFragment : Fragment() {
 
         binding.submit.setOnClickListener {
         it.isEnabled = false
-            val email = binding.emailInputLayout.editText?.text.toString();
-            val password = binding.passwordInputLayout.editText?.text.toString();
+            val email = binding.emailInputLayout.editText?.text.toString().trim();
+            val password = binding.passwordInputLayout.editText?.text.toString().trim();
 
             signIn(email,password)
         }
@@ -77,7 +77,7 @@ class RegisterEmailFragment : Fragment() {
 
     private fun signIn(email: String, password: String) {
 
-if(email.trim().isNotEmpty() && password.trim().isNotEmpty()) {
+if(email.isNotEmpty() && password.isNotEmpty()) {
     auth.createUserWithEmailAndPassword(email, password)
         .addOnCompleteListener(requireActivity()) { task ->
             if (task.isSuccessful) {
@@ -93,7 +93,30 @@ if(email.trim().isNotEmpty() && password.trim().isNotEmpty()) {
             } else {
                 task.exception?.let { exception ->
                     val errorMessage = exception.message ?: "Authentication failed."
-                    if (errorMessage.contains("email", true)) {
+                    if(errorMessage.contains("in use",true)){
+                        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(requireActivity()){
+                            if(it.isSuccessful){
+                                (activity as MainActivity).restartActivity();
+                            }
+                            else{
+                                it.exception?.let {
+                                    val loginErrorMessage = it.message ?: "Authentication failed."
+                                    if (loginErrorMessage.contains("email", true)) {
+                                    binding.emailInputLayout.error = exception.localizedMessage
+                                    hideErrorAfterDelay(binding.emailInputLayout)
+                                    // Handle email-related errors
+                                    }
+                                    else if (loginErrorMessage.contains("password", true)) {
+                                        binding.passwordInputLayout.error = exception.localizedMessage
+                                        hideErrorAfterDelay(binding.passwordInputLayout)
+                                        // Handle password-related errors
+                                    }
+                                    Toast.makeText(context, it.localizedMessage?.plus("${email} - ${password}") ?: it.localizedMessage, Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    }
+                    else if (errorMessage.contains("email", true)) {
                         binding.emailInputLayout.error = exception.localizedMessage
                         hideErrorAfterDelay(binding.emailInputLayout)
                         // Handle email-related errors
