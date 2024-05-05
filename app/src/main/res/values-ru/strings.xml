@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="greeting">Добро пожаловать!!!</string>
+
+    <!-- Вход в систему -->
+    <string name="sign_in_google">Войти с Google</string>
+    <string name="sign_in_email">Войти с Email</string>.
+
+
+    <!-- Подключение устройства -->
+    <string name="add_device_qr">Добавить камеру</string>
+
+    .
+    <!-- TODO: Удалите или измените этот текст-заполнитель -->
+    <string name="hello_blank_fragment">Привет пустой фрагмент</string>.
+
+
+    <string name="enter_email">Введите свой адрес эл. почты</string>.
+    <string name="enter_password">Введите пароль</string>.
+
+
+    <string name="submit">Отправить</string>.
+    <string name="menu_logout">Выход</string>
+    <string name="settings">Настройки</string>
+    <string name="menu_share">Обмен данными для подключения</string>
+
+    <string name="no_camera_found">Не найдена камера</string>
+
+    <!-- Qr -->
+    <string name="scan_qr">Сканируйте QR-код ниже</string>
+
+</resources>

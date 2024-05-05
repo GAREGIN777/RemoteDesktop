@@ -2,6 +2,7 @@ package com.example.remotedesktop
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.remotedesktop.databinding.ActivityMainBinding
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(){
 
         var defaultFragment : Fragment = RegisterFragment();
         if(auth.currentUser != null){
+            Toast.makeText(applicationContext, auth.currentUser!!.email,Toast.LENGTH_SHORT).show();
             defaultFragment = HomeFragment();
         }
         supportFragmentManager.beginTransaction()

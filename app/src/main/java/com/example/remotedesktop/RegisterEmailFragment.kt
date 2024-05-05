@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.remotedesktop.Firebase.Collections
 import com.example.remotedesktop.Firebase.User
+import com.example.remotedesktop.Firebase.UserRole
 import com.example.remotedesktop.databinding.FragmentRegisterBinding
 import com.example.remotedesktop.databinding.FragmentRegisterEmailBinding
 import com.google.android.material.textfield.TextInputLayout
@@ -84,7 +85,7 @@ if(email.isNotEmpty() && password.isNotEmpty()) {
                 // Sign in success, update UI with the signed-in user's information
                 val user = auth.currentUser
                 if (user != null) {
-                    val userFirestore = User(Build.MODEL, null).toMap();
+                    val userFirestore = User(Build.MODEL, null,UserRole.ADMIN).toMap();
                     firestote.collection(Collections.USERS_COLL).document(user.uid)
                         .set(userFirestore)
                     (activity as MainActivity).restartActivity();

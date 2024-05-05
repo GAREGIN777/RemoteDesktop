@@ -25,5 +25,11 @@
 
     </style>
 
+    <style name="BottomNavigationViewTextStyle">
+
+        <item name="android:fontFamily">@font/inter_black</item>
+
+    </style>
+
     <style name="Theme.RemoteDesktop" parent="Base.Theme.RemoteDesktop" />
 </resources>

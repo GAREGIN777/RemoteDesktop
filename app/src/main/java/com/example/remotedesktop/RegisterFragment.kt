@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.remotedesktop.Firebase.Collections
 import com.example.remotedesktop.Firebase.User
+import com.example.remotedesktop.Firebase.UserRole
 import com.example.remotedesktop.Tags.FragmentTags
 import com.example.remotedesktop.databinding.FragmentRegisterBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -123,7 +124,7 @@ class RegisterFragment : Fragment() {
                         val user = auth.currentUser
                         if (user != null) {
                             firestote.collection(Collections.USERS_COLL).document(user.uid)
-                                .set(User(user.displayName,user.photoUrl.toString()).toMap())
+                                .set(User(user.displayName,user.photoUrl.toString(),UserRole.ADMIN).toMap())
                             (activity as MainActivity).restartActivity();
                         };
                         // Update UI accordingly
