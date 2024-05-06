@@ -1,5 +1,6 @@
 package com.example.remotedesktop
 
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -64,6 +65,7 @@ class RegisterEmailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
+
         firestote = FirebaseFirestore.getInstance()
 
         binding.submit.setOnClickListener {
