@@ -1,7 +1,10 @@
 package com.example.remotedesktop
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity(){
     private lateinit var binding : ActivityMainBinding
     private lateinit var firestore: FirebaseFirestore
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
@@ -30,45 +34,55 @@ class MainActivity : AppCompatActivity(){
         firestore = FirebaseFirestore.getInstance();
 
 
-        var defaultFragment : Fragment = RegisterFragment();
-        var defaultActivity : Class<out AppCompatActivity> = MainActivity::class.java
+        var defaultFragment: Fragment = RegisterFragment();
+        var defaultActivity: Class<out AppCompatActivity> = MainActivity::class.java
 
         val currentUser = auth.currentUser
 
         if(currentUser != null){
-            val docRef: DocumentReference = firestore.collection(Collections.USERS_COLL).document(currentUser.uid)
-            docRef.get().addOnCompleteListener{
-                if(it.isSuccessful && it.getResult().exists()){
+            val docRef = firestore.collection(Collections.USERS_COLL).document(currentUser.uid)
+        docRef.get().addOnCompleteListener{
+            if(it.isSuccessful && it.getResult().exists()){
 
-                    val firestoreUser : User? = it.getResult().toObject(User::class.java)
-                    if(firestoreUser != null){
-                        //defaultFragment = HomeFragment();
+                val firestoreUser : User? = it.getResult().toObject(User::class.java)
+                if(firestoreUser != null){
+                    //defaultFragment = HomeFragment();
 
 
 
-                        val intent = when (firestoreUser.role) {
-                            UserRole.ADMIN -> Intent(this, ServerActivity::class.java)
-                            UserRole.USER -> Intent(this, UserActivity::class.java)
-                        }
-                        intent.putExtra("firestoreUser",firestoreUser)
-                        startActivity(intent)
+                    val intent = when (firestoreUser.role) {
+                        UserRole.ADMIN -> Intent(this, ServerActivity::class.java)
+                        UserRole.USER -> Intent(this, UserActivity::class.java)
                     }
-                    else{
-                        auth.signOut()
-                        restartActivity()
-                    }
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.putExtra("firestoreUser",firestoreUser)
+                    startActivity(intent)
                 }
+                else{
+                    auth.signOut()
+                    restartActivity()
+                }
+            }
+            else if(!it.isSuccessful){
+                Toast.makeText(applicationContext,"Check your connection and try again",Toast.LENGTH_LONG).show()
+            }
+            else {
+                auth.signOut()
+                restartActivity()
             }
 
         }
+
+    }
         else{
             supportFragmentManager.beginTransaction()
                 .replace(binding.mainFragmentContainer.id,defaultFragment)
+                .addToBackStack(null)
                 .commit()
         }
 
-
     }
+
 
     fun restartActivity(){
         val intent = Intent(applicationContext, this.javaClass)
@@ -76,6 +90,7 @@ class MainActivity : AppCompatActivity(){
         startActivity(intent)
         finish()
     }
+
 
     fun fragmentTransaction(
         fragment: Fragment,

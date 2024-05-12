@@ -124,7 +124,7 @@ class RegisterFragment : Fragment() {
                         val user = auth.currentUser
                         if (user != null) {
                             firestote.collection(Collections.USERS_COLL).document(user.uid)
-                                .set(User(user.displayName,user.photoUrl.toString(),UserRole.ADMIN).toMap())
+                                .set(User(user.uid,user.displayName.toString(),user.photoUrl.toString(),UserRole.ADMIN).toMap())
                             (activity as MainActivity).restartActivity();
                         };
                         // Update UI accordingly

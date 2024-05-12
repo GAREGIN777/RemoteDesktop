@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.addCameraBtn.setOnClickListener{
-            (activity as MainActivity).fragmentTransaction(AdminQrFragment(),FragmentTags.SCAN_QR_FRAGMENT_TAG)
+            (activity as ServerActivity).fragmentTransaction(AdminQrFragment(),FragmentTags.SCAN_QR_FRAGMENT_TAG)
         }
     }
 
