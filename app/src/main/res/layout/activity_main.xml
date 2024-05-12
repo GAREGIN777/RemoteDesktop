@@ -9,7 +9,7 @@
 
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
-        android:indeterminateTint="@color/accent_blue"
+        android:indeterminateTint="@color/dark_grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

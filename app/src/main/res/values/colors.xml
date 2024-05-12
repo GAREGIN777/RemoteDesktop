@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="transparent">#00000000</color>
+    <color name="modal_transparent">#626262</color>
+
+
     <color name="black">#FF000000</color>
     <color name="dark_grey">#454545</color>
 
@@ -12,7 +16,7 @@
 
     <color name="accent_blue">#213BCC</color>
     <color name="accent_purple">#5D0AF1</color>
-
+    <color name="accent_red">#FF2414</color>
 
 
     <color name="gradient_start">#9C27B0</color>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <item
+            android:id="@+id/admin_settings_become_camera"
+            android:title="@string/menu_become_camera"
+            android:icon="@drawable/baseline_camera_alt_24"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/admin_settings_change_name"
+            android:title="@string/menu_change_name"
+            android:icon="@drawable/baseline_change_name_24"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/admin_settings_logout"
+            android:title="@string/menu_logout"
+            android:icon="@drawable/logout_icon"
+            app:showAsAction="never" />
+
+</menu>

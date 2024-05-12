@@ -87,7 +87,7 @@ if(email.isNotEmpty() && password.isNotEmpty()) {
                 // Sign in success, update UI with the signed-in user's information
                 val user = auth.currentUser
                 if (user != null) {
-                    val userFirestore = User(Build.MODEL, null,UserRole.ADMIN).toMap();
+                    val userFirestore = User(user.uid,Build.MODEL, null,UserRole.ADMIN).toMap();
                     firestote.collection(Collections.USERS_COLL).document(user.uid)
                         .set(userFirestore)
                     (activity as MainActivity).restartActivity();

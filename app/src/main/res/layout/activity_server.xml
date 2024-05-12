@@ -21,7 +21,10 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu"
         android:background="@color/white"
-        style="@style/Widget.Design.BottomNavigationView"
+        app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
+        app:itemTextAppearanceInactive="@style/BottomNavigationViewTextStyle"
+        app:itemIconTint="@color/black"
+        style="@style/Widget.Material3.BottomNavigationView"
         app:elevation="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
