@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.remotedesktop.Adapters.ConnectDeviceItemAdapter
 import com.example.remotedesktop.Firebase.Collections
 import com.example.remotedesktop.Firebase.ConnectedDevice
 import com.example.remotedesktop.Firebase.User
-import com.example.remotedesktop.databinding.FragmentAdminSettingsBinding
+import com.example.remotedesktop.Tags.FragmentTags
 import com.example.remotedesktop.databinding.FragmentConnectedDevicesBinding
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
@@ -64,6 +63,7 @@ class ConnectedDevicesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        connectedUsers = ArrayList<User>();
         firestore = FirebaseFirestore.getInstance()
         activity = requireActivity() as ServerActivity;
         sharedUserData = activity.getUserData();
@@ -106,7 +106,9 @@ class ConnectedDevicesFragment : Fragment() {
             // Do something with the clicked item
             if (selectedItem != null) {
                 // Example: Show a toast with the clicked item's text
-         Toast.makeText(context,selectedItem.uid,Toast.LENGTH_LONG).show();
+         //Toast.makeText(context,selectedItem.uid,Toast.LENGTH_LONG).show();
+                val currentUserFragment : AdminCurrentUserDeviceFragment = AdminCurrentUserDeviceFragment.newInstance(selectedItem.uid);
+                activity.fragmentTransaction(currentUserFragment,FragmentTags.CONNECTED_CURRENT_USER_DEVICE);
             }
         }
     }

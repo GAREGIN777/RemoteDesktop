@@ -1,6 +1,5 @@
 package com.example.remotedesktop
 
-import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -9,15 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.remotedesktop.Firebase.Collections
 import com.example.remotedesktop.Firebase.DeviceQrCode
 import com.example.remotedesktop.Firebase.User
 import com.example.remotedesktop.Helpers.generateQRCodeImage
 import com.example.remotedesktop.databinding.FragmentAdminQrBinding
-import com.example.remotedesktop.databinding.FragmentHomeBinding
 import com.google.firebase.Timestamp
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.TimeUnit
 
@@ -44,12 +40,11 @@ class AdminQrFragment : Fragment() {
     private lateinit var countDownTimer: CountDownTimer
 
 
-    fun timePastInMillis(timestamp: Timestamp) : Long{
+    private fun timePastInMillis(timestamp: Timestamp): Long {
         val currentTime = Timestamp.now()
-        val diffInMillis = currentTime.seconds - timestamp.seconds
-        return diffInMillis;
+        return currentTime.seconds - timestamp.seconds
     }
-    fun isMoreThan30MinutesAgo(timestamp: Timestamp): Boolean {
+    private fun isMoreThan30MinutesAgo(timestamp: Timestamp): Boolean {
         val diffInMillis = timePastInMillis(timestamp)
         val diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(diffInMillis * 1000)
         return diffInMinutes > 30
@@ -70,7 +65,8 @@ class AdminQrFragment : Fragment() {
             }
 
             override fun onFinish() {
-                binding.qrTimer.text = "00:00:00"
+                val timeString = String.format("%02d:%02d:%02d", 0, 0, 0)
+                binding.qrTimer.text = timeString
                 recreateQrForm()
                 // You can perform any action here when the timer finishes
             }
@@ -128,8 +124,8 @@ class AdminQrFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentAdminQrBinding.inflate(inflater, container, false);
-        return binding.root;
+        _binding = FragmentAdminQrBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -137,8 +133,8 @@ class AdminQrFragment : Fragment() {
         firestore = FirebaseFirestore.getInstance()
 
           val activity = requireActivity() as ServerActivity
-       sharedUserData = activity.getUserData();
-        val qr = sharedUserData.qr;
+       sharedUserData = activity.getUserData()
+        val qr = sharedUserData.qr
         if(qr != null){
             val qrInfo = firestore.collection(Collections.USERS_ADMIN_QR_COLL).document(qr)
             qrInfo.get()
@@ -148,11 +144,11 @@ class AdminQrFragment : Fragment() {
                         if (deviceQrCode != null) {
                             if(isMoreThan30MinutesAgo(deviceQrCode.createdAt)){
                                 Toast.makeText(context,getString(R.string.qr_was_generated),Toast.LENGTH_LONG).show()
-                                binding.recreateQrForm.visibility = View.VISIBLE;
+                                binding.recreateQrForm.visibility = View.VISIBLE
                                 recreateQrForm()
                             }
                             else{
-                                val millisInFuture = MILLIS_START_TIME-timePastInMillis(deviceQrCode.createdAt)*1000;
+                                val millisInFuture = MILLIS_START_TIME-timePastInMillis(deviceQrCode.createdAt)*1000
                                 startTimer(millisInFuture)
                             //seconds
                             }
@@ -203,6 +199,6 @@ class AdminQrFragment : Fragment() {
                 }
             }
 
-        private  const val MILLIS_START_TIME : Long = 30*60*1000;
+        private  const val MILLIS_START_TIME : Long = 30*60*1000
     }
 }

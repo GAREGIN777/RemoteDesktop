@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:minWidth="320dp"
+            android:minWidth="360dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="20dp"
             android:layout_width="wrap_content"

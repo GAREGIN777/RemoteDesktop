@@ -1,13 +1,25 @@
 package com.example.remotedesktop
 
+import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import com.example.remotedesktop.Firebase.User
+import com.example.remotedesktop.Helpers.VideoRecorder
+import com.example.remotedesktop.Services.VideoRecordingService
 import com.example.remotedesktop.Tags.FragmentTags
 import com.example.remotedesktop.databinding.FragmentHomeBinding
 import com.example.remotedesktop.databinding.FragmentUserHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +39,40 @@ class UserHomeFragment : Fragment() {
     private var _binding: FragmentUserHomeBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var sharedUser : User;
+
+    fun goToMain(){
+        val intent : Intent =  Intent(requireContext(),MainActivity::class.java);
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
+        startActivity(intent);
+    }
+    fun logout(){
+        (requireActivity() as UserActivity).stopBgService()
+        FirebaseAuth.getInstance().signOut();
+        goToMain()
+    }
+
+    fun showLogoutModal(){
+        val dialog = Dialog(requireActivity())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_admin_logout)
+
+        val submitBtn: Button = dialog.findViewById(R.id.submit_logout);
+        val denyBtn : Button = dialog.findViewById(R.id.deny_logout);
+
+        submitBtn.setOnClickListener{
+            it.isEnabled = false
+            logout()
+        }
+
+        denyBtn.setOnClickListener{
+            dialog.dismiss();
+        }
+        dialog.show();
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -39,6 +85,14 @@ class UserHomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        sharedUser = (requireActivity() as UserActivity).getUserData()
+
+
+        /*videoRecorder = VideoRecorder(requireContext(),this,sharedUser.uid)
+
+         videoRecorder.startRecording()*/
+
+
         // Inflate the layout for this fragment
         _binding = FragmentUserHomeBinding.inflate(inflater, container, false);
         return binding.root;
@@ -50,6 +104,11 @@ class UserHomeFragment : Fragment() {
         binding.connectDeviceBtn.setOnClickListener{
             activity.fragmentTransaction(UserConnectDeviceFragment(),FragmentTags.USER_CONNECT_DEVICE_FRAGMENT_TAG);
         }
+
+        binding.logoutDeviceBtn.setOnClickListener{
+            showLogoutModal()
+        }
+
     }
 
     companion object {

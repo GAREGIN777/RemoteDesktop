@@ -45,14 +45,32 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation(libs.material)
 
+    val cameraX = "1.1.0";
+
+    //Maps
+
+    implementation("org.osmdroid:osmdroid-android:6.1.18")
+    implementation("com.pusher:pusher-java-client:2.4.2")
+    
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
+    implementation("androidx.camera:camera-core:$cameraX")
+    implementation("androidx.camera:camera-camera2:$cameraX")
+    implementation("androidx.camera:camera-lifecycle:$cameraX")
+    implementation("androidx.camera:camera-video:$cameraX")
+
+
+
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation("com.google.zxing:core:3.4.1")
-
 
     implementation("com.google.firebase:firebase-auth")
 
     // Import the BoM for the Firebase platform
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation("com.google.firebase:firebase-storage")
 
     // Declare the dependency for the Cloud Firestore library
     // When using the BoM, you don't specify versions in Firebase library dependencies
@@ -60,9 +78,12 @@ dependencies {
 
 
     implementation("com.google.android.gms:play-services-auth:21.1.0")
+    implementation("com.google.android.gms:play-services-location:21.1.0")
+
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+    implementation("androidx.lifecycle:lifecycle-service:2.8.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

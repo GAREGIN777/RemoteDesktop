@@ -10,7 +10,9 @@ class FragmentTags {
         const val ADMIN_SETTINGS_FRAGMENT_TAG = "Admin Settings Menu" //DESTINATION TO
 
         const val SCAN_QR_FRAGMENT_TAG = "Scan QR Fragment" //DESTINATION TO
-        const val CONNECTED_DEVICES_FRAGMENT_TAG = "Scan QR Fragment" //DESTINATION TO
+        const val CONNECTED_DEVICES_FRAGMENT_TAG = "Connected Devices Fragment" //DESTINATION TO
+
+        const val CONNECTED_CURRENT_USER_DEVICE = "Connected Current User Device" //DESTINATION TO
 
 
         //USER

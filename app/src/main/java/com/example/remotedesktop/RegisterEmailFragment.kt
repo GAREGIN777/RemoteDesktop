@@ -1,6 +1,5 @@
 package com.example.remotedesktop
 
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +10,6 @@ import android.widget.Toast
 import com.example.remotedesktop.Firebase.Collections
 import com.example.remotedesktop.Firebase.User
 import com.example.remotedesktop.Firebase.UserRole
-import com.example.remotedesktop.databinding.FragmentRegisterBinding
 import com.example.remotedesktop.databinding.FragmentRegisterEmailBinding
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -45,6 +43,7 @@ class RegisterEmailFragment : Fragment() {
     private val binding get() = _binding!!
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -58,8 +57,8 @@ class RegisterEmailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentRegisterEmailBinding.inflate(inflater, container, false);
-        return binding.root;
+        _binding = FragmentRegisterEmailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,18 +66,39 @@ class RegisterEmailFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         firestote = FirebaseFirestore.getInstance()
+        var currentRole : UserRole = UserRole.USER;
 
-        binding.submit.setOnClickListener {
+
+
+            binding.submit.setOnClickListener {
         it.isEnabled = false
-            val email = binding.emailInputLayout.editText?.text.toString().trim();
-            val password = binding.passwordInputLayout.editText?.text.toString().trim();
+            val email = binding.emailInputLayout.editText?.text.toString().trim()
+            val password = binding.passwordInputLayout.editText?.text.toString().trim()
 
-            signIn(email,password)
+            signIn(email,password,currentRole)
         }
+
+        binding.adminTestBtn.setOnClickListener{
+            currentRole = UserRole.ADMIN
+            val email = "sictst1@gmail.com"
+            val password = "Samsung2023"
+            binding.emailInputLayout.editText?.setText(email)
+            binding.passwordInputLayout.editText?.setText(password)
+        }
+
+        binding.userTestBtn.setOnClickListener {
+            currentRole = UserRole.USER
+            val email = "sictst2@gmail.com"
+            val password = "Samsung2023"
+            binding.emailInputLayout.editText?.setText(email)
+            binding.passwordInputLayout.editText?.setText(password)
+        }
+
+
 
     }
 
-    private fun signIn(email: String, password: String) {
+    private fun signIn(email: String, password: String,currentRole : UserRole = UserRole.USER) {
 
 if(email.isNotEmpty() && password.isNotEmpty()) {
     auth.createUserWithEmailAndPassword(email, password)
@@ -87,11 +107,11 @@ if(email.isNotEmpty() && password.isNotEmpty()) {
                 // Sign in success, update UI with the signed-in user's information
                 val user = auth.currentUser
                 if (user != null) {
-                    val userFirestore = User(user.uid,Build.MODEL, null,UserRole.ADMIN).toMap();
+                    val userFirestore = User(user.uid,Build.MODEL, null,currentRole).toMap()
                     firestote.collection(Collections.USERS_COLL).document(user.uid)
                         .set(userFirestore)
-                    (activity as MainActivity).restartActivity();
-                };
+                    (activity as MainActivity).restartActivity()
+                }
                 // You can navigate to another activity or update UI here
             } else {
                 task.exception?.let { exception ->
@@ -99,7 +119,7 @@ if(email.isNotEmpty() && password.isNotEmpty()) {
                     if(errorMessage.contains("in use",true)){
                         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(requireActivity()){
                             if(it.isSuccessful){
-                                (activity as MainActivity).restartActivity();
+                                (activity as MainActivity).restartActivity()
                             }
                             else{
                                 it.exception?.let {

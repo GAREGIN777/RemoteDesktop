@@ -1,39 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="greeting">Добро пожаловать!!!</string>
+    <!-- Constants -->
 
-    <!-- Вход -->
-<string name="sign_in_google">Войти с Google</string>
-<string name="sign_in_email">Войти с Email</string>
+    <string name="greeting">Добро пожаловать!!!</string>
 
-    <!-- Подключение устройства -->
-<string name="add_device_qr">Добавить камеру</string>
+    <!-- Sign in -->
+    <string name="sign_in_google">Войти с Google</string>
+    <string name="sign_in_email">Войти с Email</string>
 
-<string name="google_client_id" translatable="false">13325893309-uoihd848e8dtb17h3fl5bkp1bpol3avr.apps.googleusercontent.com</string>
+    <!-- Device connection -->
+    <string name="add_device_qr">Добавить камеру</string>
 
-<string name="hello_blank_fragment">Привет пустой фрагмент</string>
+    <string name="google_client_id" translatable="false">13325893309-uoihd848e8dtb17h3fl5bkp1bpol3avr.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Привет, пустой фрагмент</string>
 
-<string name="enter_email">Введите email</string>
-<string name="enter_password">Введите пароль</string>
+    <string name="enter_email">Введите email</string>
+    <string name="enter_password">Введите пароль</string>
 
-<string name="submit">Отправить</string>
-<string name="menu_logout">Выйти</string>
-<string name="menu_home">Главная</string>
-<string name="settings">Настройки</string>
-<string name="menu_share">Поделиться данными для подключения</string>
+    <string name="menu_logout">Выйти</string>
+    <string name="menu_home">Главная</string>
+    <string name="settings">Настройки</string>
+    <string name="menu_share">Поделиться данными для подключения</string>
 
-<string name="no_camera_found">Камера не найдена</string>
+    <string name="no_camera_found">Камера не найдена</string>
 
-    <!-- QR -->
-<string name="scan_qr">Сканировать QR-код ниже</string>
-<string name="qr_was_generated"><![CDATA[QR-код был сгенерирован более 30 минут назад]]></string>
-<string name="recreate_qr">Пересоздать QR-код</string>
-<string name="menu_change_name">Изменить имя</string>
-    <string name="menu_become_camera">Become camera</string>
-    <string name="connect_the_device">Connect the device</string>
-    <string name="alredy_connected">Already connected</string>
-    <string name="connect_user_not_found">User to be connected with was not found</string>
-    <string name="connected_devices">Connected Devices</string>
-    <string name="menu_connected_devices">Connected Devices</string>
+    <!-- Submit / Deny -->
+    <string name="submit">Подтвердить</string>
+    <string name="deny">Отклонить</string>
 
+    <!-- Qr -->
+    <string name="scan_qr">Отсканируйте QR-код ниже</string>
+    <string name="qr_was_generated">QR-код был сгенерирован более 30 минут назад</string>
+    <string name="recreate_qr">Создать QR-код заново</string>
+    <string name="menu_change_name">Изменить имя</string>
+
+    <!-- Guarantee messages-->
+    <string name="confirm_message">Вы уверены?</string>
+
+    <!-- Success messages -->
+    <string name="success">Успешно</string>
+
+    <!-- Errors zone -->
+    <string name="invalid_username_error">Имя пользователя должно существовать и быть менее 20 символов</string>
+    <string name="unknown_error">Обнаружена неизвестная ошибка</string>
+    <string name="menu_become_camera">Стать камерой</string>
+    <string name="connect_the_device">Подключить устройство</string>
+    <string name="alredy_connected">Уже подключено</string>
+    <string name="connect_user_not_found">Пользователь для подключения не найден</string>
+    <string name="connected_devices">Подключенные устройства</string>
+    <string name="menu_connected_devices">Подключенные устройства</string>
+
+
+    <string name="admin_test_account">Тестовый аккаунт админа</string>
+    <string name="user_test_account">Тестовый аккаунт пользователя</string>
 </resources>

@@ -70,6 +70,33 @@
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/adminTestBtn"
+            style="@style/CustomBtn"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/accent_blue"
+            android:text="@string/admin_test_account"
+            android:textAlignment="textStart">
+
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/userTestBtn"
+            style="@style/CustomBtn"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/accent_blue"
+            android:text="@string/user_test_account"
+            android:textAlignment="textStart"
+           >
+
+        </com.google.android.material.button.MaterialButton>
+
+
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/submit"
             style="@style/CustomBtn"
             android:layout_gravity="center_horizontal"
